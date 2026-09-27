@@ -1,4 +1,4 @@
-# Bitacora individual - Semana 3
+# Bitacora individual - Semana [III]
 
 > Copia este archivo y renombralo como `s03-santiago-romero-oviedo.md`.
 > Completa todas las secciones con tus propias palabras. Esta bitacora es
