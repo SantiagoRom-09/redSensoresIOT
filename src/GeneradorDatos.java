@@ -8,6 +8,7 @@ import java.util.Random;   // como "import random" en Python
  *
  * Analogia Python: seria una funcion
  *   def generar(n): return [LecturaSensor(...) for i in range(n)]
+ *  feat: crear generador de datos sintéticos con semilla fija para pruebas
  */
 public class GeneradorDatos {
 
