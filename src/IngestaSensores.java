@@ -1,6 +1,6 @@
 /* ============================================================
    PLATAFORMA DE MONITOREO AMBIENTAL URBANO
-   IngestaSensores - SEMANA 3
+   IngestaSensores - SEMANA 3 + SEMANA 4
 
    Este es el ÚNICO punto de entrada de todo el proyecto.
 
@@ -38,6 +38,15 @@ public class IngestaSensores {
         // Los experimentos son parte de esta misma aplicación.
         //
         ejecutarExperimentosSemanaTres();
+
+        // =====================================================
+        // SEMANA 4 - ORDENAMIENTOS Y COMPARACION DE EFICIENCIA
+        // =====================================================
+        //
+        // Igual que BancoDePruebas, BancoDeOrdenamiento NO tiene main.
+        // Se agrega UNA llamada aqui: el main sigue siendo uno solo.
+        //
+        ejecutarExperimentosSemanaCuatro();
     }
 
     /**
@@ -57,6 +66,27 @@ public class IngestaSensores {
         BancoDePruebas.experimentoCuatro();
     }
 
+    /**
+     * SEMANA 4: ejecuta los 5 experimentos de ordenamiento desde el unico
+     * main del proyecto. Cada experimento genera sus propios datos en
+     * memoria (GeneradorDatos), por eso no depende del CSV.
+     * Nota: el experimento 3 (insercion con 100.000 datos) y el 4 pueden
+     * tardar varios segundos; es normal.
+     */
+    private static void ejecutarExperimentosSemanaCuatro() {
+        System.out.println();
+        System.out.println("====================================================");
+        System.out.println("     SEMANA 4 - ORDENAMIENTOS Y EFICIENCIA");
+        System.out.println("====================================================");
+        System.out.println();
+
+        BancoDeOrdenamiento.experimentoUno();
+        BancoDeOrdenamiento.experimentoDos();
+        BancoDeOrdenamiento.experimentoTres();
+        BancoDeOrdenamiento.experimentoCuatro();
+        BancoDeOrdenamiento.experimentoCinco();
+    }
+
     private static void imprimirResumenIngesta(
             RepositorioLecturas repositorio) {
 
@@ -71,7 +101,7 @@ public class IngestaSensores {
         System.out.println();
         System.out.println(
                 "PM2.5 promedio (repositorio): "
-                + repositorio.promedioPm25());
+                        + repositorio.promedioPm25());
     }
 
     private static void imprimirPerfilHorario(
@@ -118,7 +148,7 @@ public class IngestaSensores {
                 if (!repositorio.agregar(lectura)) {
                     System.err.println(
                             "ADVERTENCIA: no se pudo almacenar "
-                            + lectura.getIdSensor());
+                                    + lectura.getIdSensor());
                     continue;
                 }
 
