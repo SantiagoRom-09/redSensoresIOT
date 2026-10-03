@@ -1,14 +1,19 @@
 import java.util.Random;   // como "import random" en Python
 
 /**
- * GeneradorDatos - SEMANA 3
+ * GeneradorDatos - SEMANA 3 + SEMANA 4
  *
  * Fabrica lecturas sinteticas EN MEMORIA (sin leer archivos) para poder
- * probar las busquedas con 1.000, 100.000 y 1.000.000 de datos.
+ * probar busquedas y ordenamientos con 1.000, 100.000 y 1.000.000 de datos.
  *
- * Analogia Python: seria una funcion
- *   def generar(n): return [LecturaSensor(...) for i in range(n)]
- *  feat: crear generador de datos sintéticos con semilla fija para pruebas
+ * SEMANA 4: se agrega generarDesordenadas(n), porque para medir los
+ * ordenamientos necesitamos DOS tipos de entrada:
+ *   - generar(n)             -> ya ordenada por timestamp (llegan cronologicamente)
+ *   - generarDesordenadas(n) -> las mismas lecturas, pero mezcladas
+ *
+ * Analogia Python:
+ *   datos = generar(n)
+ *   random.shuffle(datos)      # eso hace generarDesordenadas
  */
 public class GeneradorDatos {
 
@@ -61,6 +66,41 @@ public class GeneradorDatos {
         return datos;
     }
 
+    /**
+     * SEMANA 4: devuelve las MISMAS n lecturas de generar(n), pero mezcladas.
+     * Sirve para medir los ordenamientos con datos "desordenados".
+     *
+     * Usa el algoritmo de Fisher-Yates (el que usa random.shuffle en Python):
+     * recorre el arreglo de atras hacia adelante y en cada posicion i
+     * intercambia con una posicion al azar entre 0 e i.
+     */
+    public static LecturaSensor[] generarDesordenadas(int n) {
+
+        // Partimos de los datos ya ordenados por timestamp.
+        LecturaSensor[] datos = generar(n);
+
+        // OTRA semilla distinta (SEMILLA + 1) para que la mezcla no dependa
+        // de los numeros que ya se gastaron en generar(). Sigue siendo fija,
+        // asi que el resultado es repetible en cada ejecucion.
+        Random azar = new Random(SEMILLA + 1);
+
+        // for i in range(n - 1, 0, -1)   (de atras hacia adelante)
+        for (int i = n - 1; i > 0; i--) {
+
+            // nextInt(i + 1) = entero al azar entre 0 e i, ambos incluidos.
+            // Python: random.randint(0, i)
+            int j = azar.nextInt(i + 1);
+
+            // Intercambio clasico con variable temporal.
+            // Python: datos[i], datos[j] = datos[j], datos[i]
+            LecturaSensor temporal = datos[i];
+            datos[i] = datos[j];
+            datos[j] = temporal;
+        }
+
+        return datos;
+    }
+
     /** Redondea a 1 decimal (Python: round(valor, 1)). */
     private static double redondear(double valor) {
         return Math.round(valor * 10.0) / 10.0;
@@ -76,4 +116,3 @@ public class GeneradorDatos {
         return "9999999999";
     }
 }
-
