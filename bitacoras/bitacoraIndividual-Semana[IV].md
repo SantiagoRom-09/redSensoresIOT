@@ -2,10 +2,10 @@
 
 ## 1. Datos de la actividad
 - **Estudiante:** Santiago Romero Oviedo
-- **Equipo:** Grupo 3
+- **Equipo:** 
 - **Semana:** 4
 - **Fecha del laboratorio:** 2026-09-28
-- **Fecha del taller:** 2026-10-03
+- **Fecha del taller:** 2026-10-05
 - **Tema principal:** Algoritmos de ordenamiento (simples y avanzados), complejidad temporal y el impacto de alterar datos compartidos.
 - **Pregunta de la semana:** ¿Cómo impacta la elección del pivote en algoritmos recursivos como QuickSort y por qué ordenar arreglos in-place puede generar efectos colaterales destructivos en el sistema?
 
